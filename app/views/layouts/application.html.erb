@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MovieReview</title>
+  <title>Movie Review App</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Movie Review App</a>
+      <%= link_to "Movie Review App" , root_path , class: "navbar-brand" %>
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-collapse-main">
