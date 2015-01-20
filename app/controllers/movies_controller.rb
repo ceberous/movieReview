@@ -23,8 +23,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user.movies.build(movie_params)
-    @movie.upload_from_url(params[:remote_url])
-    
+    @movie.upload_from_url(params[:remote_url]) if params[:remote_url].present?
     @movie.save
     respond_with(@movie)
   end

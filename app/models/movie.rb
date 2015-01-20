@@ -13,4 +13,6 @@ class Movie < ActiveRecord::Base
 	def upload_from_url(url)
 		self.image = open(url)
 	end
+
+
 end

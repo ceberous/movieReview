@@ -36,7 +36,9 @@
           <tbody>
             <tr>
               <td><%= movie.description.truncate(20) %></td>
-              <td><%= movie.movie_length %></td>
+              <td>
+                <%= movie.movie_length %>
+              </td>
               <td><%= movie.director.truncate(20) %></td>
               <td><%= movie.rating %></td>
             </tr>
