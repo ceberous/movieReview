@@ -26,6 +26,16 @@
           <li>
             <%= link_to "Logout??" , destroy_user_session_path , :method => :delete %>
           </li>
+
+        <% else %> 
+          <li class="active">
+            <%= link_to "Sign In" , new_user_session_path %>
+            <span class="sr-only">(current)</span>
+          </li>
+
+          <li>
+            <%= link_to "Sign Up" , new_user_registration_path %>
+          </li>
         <% end %>
 
             
