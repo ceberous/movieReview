@@ -1,4 +1,8 @@
-  <%= form_for @movie , html: {multipart: true } do |f| %>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+  <div class="center">
+  <%= simple_form_for @movie , html: {multipart: true } do |f| %>
+    
     <% if @movie.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -11,36 +15,54 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description %>
-    </div>
-    <div class="field">
-      <%= f.label :movie_length %><br>
-      <%= f.text_field :movie_length %>
-    </div>
-    <div class="field">
-      <%= f.label :director %><br>
-      <%= f.text_field :director %>
-    </div>
-    <div class="field">
-      <%= f.label :rating %><br>
-      <%= f.text_field :rating %>
-    </div>
-    <div class="field">
-      <%= f.label :image %><br>
-      <%= f.file_field :image %>
-    </div>
-    <div class="field">
-      <%= f.label :remote_url %>
-      <%= text_field_tag 'remote_url' %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <form action="" class="form-horizontal">
+    <fieldset>
+    
+      <div class="form-group">
+        <%= f.text_field :title , placeholder: 'Title' , class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_area :description , placeholder: 'Description' , class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :movie_length , placeholder: 'Movie Length' , class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :director , placeholder: 'Director' , class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Rating " %>
+        <%= f.select :rating, [['R','R'],['PG-13','PG-13'],['PG','PG'],['G','G']] , class: "form-control tcenter" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Local File" %>
+        <%= f.file_field :image , placeholder: 'Image' , class: "form-control" %>
+      </div>
+      <p class="tcenter"><strong>OR</strong></p>
+      <div class="form-group">
+        <%= f.label "From Remote URL" %>
+        <%= text_field_tag 'remote_url' , nil , class: "form-control" %>
+      </div>
+
+      <div class="actions form-group">
+        <%= f.submit "Submit" , :class => "form-control btn btn-primary" %>
+      </div>
+
+      <div class="form-group">
+        <%= link_to 'Cancel', movies_path , class: "form-control btn btn-danger" %>
+      </div>
+
+    </fieldset>
+    </form>
+
   <% end %>
+    
+  
+  </div>
+</div> <!-- Ends div.form_partial -->
 
