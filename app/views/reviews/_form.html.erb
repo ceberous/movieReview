@@ -1,12 +1,32 @@
-<%= simple_form_for(@review) do |f| %>
-  <%= f.error_notification %>
+<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
 
-  <div class="form-inputs">
-    <%= f.input :rating %>
-    <%= f.input :comment %>
-  </div>
+	<%= simple_form_for([ @movie , @review ]) do |f| %>
+	
+		<%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+		<div id="star-rating">
+			
+		</div>
+
+	    <%= f.input :comment , placeholder: "Comment" , class: "form-control"  %> <br>
+
+
+	    <%= f.button :submit , class: "btn btn-success form-control" %> <br>
+
+		<br> <br>
+	  	<%= link_to 'Cancel', @movie , class: "btn btn-warning form-control" %>
+
+	  	<br> <br>
+
+	  	
+
+	<% end %>
+
+</div>
+
+<script>
+	$('#star-rating').raty({
+		path: '/',
+		scoreName: 'review[rating]'
+	});
+</script>

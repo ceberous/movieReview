@@ -1,17 +1,9 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie
   before_action :authenticate_user!
-  
+
   respond_to :html
-
-  def index
-    @reviews = Review.all
-    respond_with(@reviews)
-  end
-
-  def show
-    respond_with(@review)
-  end
 
   def new
     @review = Review.new
@@ -19,13 +11,15 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    @review.movie_id = @movie.id
     if @review.save
-      redirect_to @review
+      redirect_to @movie
     else
       render 'new'
     end
@@ -33,17 +27,21 @@ class ReviewsController < ApplicationController
 
   def update
     @review.update(review_params)
-    respond_with(@review)
+    redirect_to @movie
   end
 
   def destroy
     @review.destroy
-    respond_with(@review)
+    redirect_to @movie
   end
 
   private
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_movie
+      @movie = Movie.find(params[:movie_id])
     end
 
     def review_params

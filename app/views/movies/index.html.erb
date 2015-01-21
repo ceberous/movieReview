@@ -1,58 +1,19 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="row">
 
-  <h1 class="tcenter">Movies</h1>
-
-  <% @movies.each do |movie| %>
-    
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          <%= movie.title %>
-          <%= link_to 'Edit', edit_movie_path(movie) , class: "btn btn-warning" %>
-          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }  , class: "btn btn-danger"%>
-
-        </div>
-
-        <div class="panel-body">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <% @movies.each do |movie| %>
+      
+      
+      <div class="col-sm-6 col-md-3 col-xs-12">
+        <div class="thumbnail">
           <%= link_to movie do %>
-            <%= image_tag movie.image.url(:small) , class: "img-responsive center-block" %>
+            <%= image_tag movie.image.url(:medium) , class: "img-responsive" %>
           <% end %>
         </div>
-
-
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Movie length</th>
-              <th>Director</th>
-              <th>Rating</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td><%= movie.description.truncate(20) %></td>
-              <td>
-                <%= movie.movie_length %>
-              </td>
-              <td><%= movie.director.truncate(20) %></td>
-              <td><%= movie.rating %></td>
-            </tr>
-          </tbody>
-        
-        </table>
-
-        
       </div>
 
-    </div>
+    <% end %>
 
-  <% end %>
-
-
+  </div>
 
 </div>
