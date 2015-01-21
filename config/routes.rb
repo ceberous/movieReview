@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   resources :movies do
   	resources :reviews , except: [:show , :index]
+  	put :remove_photo , :on => :collection
   end
-  
+
 end

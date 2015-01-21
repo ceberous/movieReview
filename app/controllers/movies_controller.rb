@@ -29,13 +29,26 @@ class MoviesController < ApplicationController
   end
 
   def update
+    @movie.upload_from_url(params[:remote_url]) if params[:remote_url].present?
     @movie.update(movie_params)
+    
     respond_with(@movie)
   end
 
   def destroy
     @movie.destroy
     respond_with(@movie)
+  end
+
+  def remove_photo
+    @movie = Movie.find(params[:id])
+    if @movie.image.present?
+      @movie.image = nil
+      @movie.save
+      redirect_to edit_movie_path(@movie)
+    else
+      redirect_to @movie
+    end
   end
 
   private
