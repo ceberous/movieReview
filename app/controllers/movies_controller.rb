@@ -10,7 +10,12 @@ class MoviesController < ApplicationController
   end
 
   def show
-    respond_with(@movie)
+    @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
   def new
@@ -31,7 +36,7 @@ class MoviesController < ApplicationController
   def update
     @movie.upload_from_url(params[:remote_url]) if params[:remote_url].present?
     @movie.update(movie_params)
-    
+
     respond_with(@movie)
   end
 

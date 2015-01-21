@@ -20,7 +20,6 @@ gem 'devise'
 gem 'paperclip'
 gem 'simple_form'
 
-
 group :development, :test do
 
 	gem 'sqlite3'

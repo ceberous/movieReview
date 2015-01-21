@@ -2,7 +2,7 @@
 
   <h1 class="tcenter"><%= @movie.title %></h1>
   
-  <%= image_tag @movie.image.url(:medium) , class: "img-responsive center-block" %>
+  <%= image_tag @movie.image.url(:medium) , class: "thumbnail2 img-responsive center-block" %>
 
   <br>
 
@@ -41,19 +41,8 @@
 <div class="col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 5px;">
     
   <h2 class="tcenter">Reviews</h2>
-  <h5 class="tcenter">
-    <% sum = 0 %>
-    <% count = 0 %>
-    <% @movie.reviews.each do |review| %> 
-      <% sum += review.rating %>
-      <% count += 1 %>
-    <% end %>
-    <% if sum > 0 && count > 0 %>
-      <% average = sum / count  %>
-    <% else %>
-      <% average = "none" %>
-    <% end %>
-    <div class="star-average" data-score="<%= average %>"></div>
+  <h5 id="avg-Review-Score" class="tcenter">
+    <div class="star-average" data-score="<%= @avg_review %>"></div>
   </h5>
     
   <% @movie.reviews.each do |review| %>
@@ -80,6 +69,7 @@
       return $(this).attr('data-score');
     }
   });
+
   $('.star-average').raty({
     path: '/',
     readOnly: true,
