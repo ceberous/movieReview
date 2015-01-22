@@ -19,6 +19,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'paperclip'
 gem 'simple_form'
+gem 'searchkick'
 
 group :development, :test do
 
